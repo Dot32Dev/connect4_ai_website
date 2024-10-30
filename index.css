@@ -1,0 +1,149 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;800&display=swap");
+
+body {
+  --cell_size: 50px;
+  --background_colour: #1b1717;
+  --red_colour: #ff064d;
+  --blue_colour: #a7e0f1;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  margin: 0;
+  height: 70vh;
+
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  /* font-weight: bold; */
+  letter-spacing: 1px;
+  color: #eee;
+  background-color: var(--background_colour);
+}
+
+.board {
+  --padding: 10px;
+
+  display: flex;
+  justify-content: center;
+  gap: var(--padding);
+  padding: var(--padding);
+  width: calc(var(--cell_size) * 7 + var(--padding) * 8);
+  height: calc(var(--cell_size) * 6);
+  border: 3px solid #eee;
+  border-radius: var(--padding);
+
+  margin: var(--cell_size);
+
+  /* background-color: gray; */
+  position: relative;
+}
+
+.board::after {
+  content: "";
+  position: absolute;
+  top: calc(-5px - var(--cell_size));
+  width: calc(100% - var(--padding) * 2);
+  height: calc(10px + var(--cell_size));
+  background-color: var(--background_colour);
+  z-index: 1;
+}
+
+.column {
+  display: flex;
+  flex-direction: column-reverse; /* So the pieces fall from top to bottom */
+  width: var(--cell_size);
+  justify-content: space-around;
+  position: relative;
+}
+
+.column::before {
+  content: attr(data-col);
+  position: absolute;
+  top: -25px; /* Adjust to position above the column */
+  left: 50%;
+  transform: translateX(-50%);
+  font-weight: bold;
+  z-index: 2;
+}
+
+.column:hover {
+  outline: 1px dashed #eee5;
+  border-radius: calc(var(--cell_size) / 2);
+  /* cursor: pointer; */
+}
+
+.cell {
+  --triangle_size: 30px;
+
+  width: var(--cell_size);
+  height: var(--cell_size);
+  /* background-color: #fff; */
+  position: relative;
+  /* border: 1px solid #000; */
+}
+
+.cell::before {
+  content: "";
+  position: absolute;
+  /* left: 0%; */
+  /* top: 50%; */
+  width: 0;
+  height: 0;
+  transform: translate(
+    calc((var(--cell_size) - var(--triangle_size)) / 2),
+    15px
+  );
+  border-left: calc(var(--triangle_size) / 2) solid transparent;
+  border-right: calc(var(--triangle_size) / 2) solid transparent;
+
+  border-top: 20px solid #eee1;
+  z-index: -1;
+}
+
+.piece {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  /* background-color: var(--red_colour); /* or yellow for the other player */
+  transition: transform 0.2s ease-in;
+  outline: 5px solid var(--background_colour);
+  outline-offset: -10px;
+}
+
+span {
+  /* color: var(--red_colour); */
+  font-weight: normal;
+}
+
+h3 {
+  color: #eee5;
+  padding: 0;
+  margin-top: 0;
+  font-weight: normal;
+}
+
+h1 {
+  padding: 0;
+  margin-bottom: 10px;
+}
+
+.column[data-col="7"] > .cell[data-row="1"] {
+  /* background-color: red; */
+}
+
+span.red {
+  color: var(--red_colour);
+}
+
+span.blue {
+  color: var(--blue_colour);
+}
+
+.piece.red {
+  background-color: var(--red_colour);
+}
+
+.piece.blue {
+  background-color: var(--blue_colour);
+}

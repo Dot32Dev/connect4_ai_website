@@ -1,0 +1,11 @@
+[package]
+name = "connect4_ai_website"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+wasm-bindgen = "0.2.95"
+connect4_board_library = { git = "https://github.com/Dot32Dev/barebones_connectfour", rev = "546870e" }
