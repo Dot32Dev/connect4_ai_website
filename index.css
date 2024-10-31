@@ -73,6 +73,10 @@ body {
   /* cursor: pointer; */
 }
 
+body.inactive .column:hover {
+  outline: none;
+}
+
 .cell {
   --triangle_size: 30px;
 
@@ -146,4 +150,19 @@ span.blue {
 
 .piece.blue {
   background-color: var(--blue_colour);
+}
+
+a {
+  color: gray;
+  text-decoration: none;
+}
+
+a:hover {
+  color: white;
+  text-decoration: underline;
+}
+
+p:has(a) {
+  position: absolute;
+  bottom: 2vh;
 }

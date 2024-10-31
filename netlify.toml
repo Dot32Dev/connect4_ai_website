@@ -1,0 +1,14 @@
+[build]
+publish = "."
+ignore = "src/*"
+
+[[headers]]
+for = "/*"
+[headers.values]
+Access-Control-Allow-Origin = "*"
+
+# Ensure WASM files are served with correct MIME type
+[[headers]]
+for = "/*.wasm"
+[headers.values]
+Content-Type = "application/wasm"
