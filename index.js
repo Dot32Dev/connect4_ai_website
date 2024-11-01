@@ -48,6 +48,7 @@ init().then(() => {
   window.inactive = false;
   window.won = false;
   window.ai_loaded = false;
+  window.move_count = 0;
 
   initialise_board();
   loadAI();
@@ -101,6 +102,7 @@ function initialise_board() {
         // greet(`${turn} placed a piece in row ${col}`);
 
         game.place(col - 1);
+        window.move_count += 1;
 
         if (!window.won) {
           window.inactive = true;
@@ -136,6 +138,7 @@ function ai_turn() {
   document.body.classList.add("inactive");
 
   let column = game.ai_place();
+  window.move_count += 1;
 
   column += 1;
   let target_column = document.querySelector(`[data-col="${column}"]`);
@@ -178,14 +181,26 @@ function ai_turn() {
   // }
   if (!window.won) {
     setTimeout(function () {
-      window.inactive = false;
-      document.body.classList.remove("inactive");
+      if (window.move_count < 42) {
+        window.inactive = false;
+        document.body.classList.remove("inactive");
 
-      const turn_text = document.querySelector(`span.${window.turn}`);
-      turn_text.classList.remove(turn);
-      window.turn = window.turn === "red" ? "blue" : "red";
-      turn_text.classList.add(turn);
-      turn_text.innerHTML = `${window.turn[0].toUpperCase() + window.turn.slice(1)}'s`;
+        const turn_text = document.querySelector(`span.${window.turn}`);
+        turn_text.classList.remove(turn);
+        window.turn = window.turn === "red" ? "blue" : "red";
+        turn_text.classList.add(turn);
+        turn_text.innerHTML = `${window.turn[0].toUpperCase() + window.turn.slice(1)}'s`;
+      } else {
+        const turnText = document.querySelector("p"); // Select the p element directly
+        turnText.innerHTML = `It's a draw!`;
+
+        // Create and insert reload message
+        const reloadMessage = document.createElement("p");
+        reloadMessage.innerHTML =
+          '<a href="javascript:location.reload()">Play again</a>';
+        reloadMessage.style.cursor = "pointer";
+        turnText.parentElement.append(reloadMessage);
+      }
     }, 200);
   }
 
