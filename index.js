@@ -19,7 +19,7 @@ window.win = function () {
 
   // const turn_text = document.querySelector(`span.${turn}`);
   // turn_text.classList.remove(window.turn);
-  window.turn = window.turn === "red" ? "blue" : "red";
+  // window.turn = window.turn === "red" ? "blue" : "red";
   // turn_text.classList.add(window.turn);
   console.log(`${window.turn} won`);
   // const turn_text = document.querySelector(`span.${turn}`).parentElement;
@@ -100,12 +100,6 @@ function initialise_board() {
 
         // greet(`${turn} placed a piece in row ${col}`);
 
-        const turn_text = document.querySelector(`span.${window.turn}`);
-        turn_text.classList.remove(turn);
-        window.turn = window.turn === "red" ? "blue" : "red";
-        turn_text.classList.add(turn);
-        turn_text.innerHTML = `${window.turn[0].toUpperCase() + window.turn.slice(1)}'s`;
-
         game.place(col - 1);
 
         if (!window.won) {
@@ -113,8 +107,14 @@ function initialise_board() {
           document.body.classList.add("inactive");
 
           setTimeout(function () {
+            const turn_text = document.querySelector(`span.${window.turn}`);
+            turn_text.classList.remove(turn);
+            window.turn = window.turn === "red" ? "blue" : "red";
+            turn_text.classList.add(turn);
+            turn_text.innerHTML = `${window.turn[0].toUpperCase() + window.turn.slice(1)}'s`;
+
             ai_turn();
-          }, 500);
+          }, 200);
         }
       }
     });
@@ -159,14 +159,41 @@ function ai_turn() {
       piece.style.transform = "translateY(0px)";
     }, 10);
 
+    // const turn_text = document.querySelector(`span.${window.turn}`);
+    // turn_text.classList.remove(turn);
+    // window.turn = window.turn === "red" ? "blue" : "red";
+    // turn_text.classList.add(turn);
+    // turn_text.innerHTML = `${window.turn[0].toUpperCase() + window.turn.slice(1)}'s`;
+    if (window.won) {
+      const turn_text = document.querySelector(`span.${window.turn}`);
+      turn_text.classList.remove(turn);
+      window.turn = window.turn === "red" ? "blue" : "red";
+      turn_text.classList.add(turn);
+      turn_text.innerHTML = `${window.turn[0].toUpperCase() + window.turn.slice(1)}`;
+    }
+  }
+  // if (!window.won) {
+  //   window.inactive = false;
+  //   document.body.classList.remove("inactive");
+  // }
+  if (!window.won) {
+    setTimeout(function () {
+      window.inactive = false;
+      document.body.classList.remove("inactive");
+
+      const turn_text = document.querySelector(`span.${window.turn}`);
+      turn_text.classList.remove(turn);
+      window.turn = window.turn === "red" ? "blue" : "red";
+      turn_text.classList.add(turn);
+      turn_text.innerHTML = `${window.turn[0].toUpperCase() + window.turn.slice(1)}'s`;
+    }, 200);
+  }
+
+  if (window.won) {
     const turn_text = document.querySelector(`span.${window.turn}`);
     turn_text.classList.remove(turn);
     window.turn = window.turn === "red" ? "blue" : "red";
     turn_text.classList.add(turn);
     turn_text.innerHTML = `${window.turn[0].toUpperCase() + window.turn.slice(1)}'s`;
-  }
-  if (!window.won) {
-    window.inactive = false;
-    document.body.classList.remove("inactive");
   }
 }
