@@ -56,7 +56,7 @@ init().then(() => {
 async function loadAI() {
   try {
     // const response = await fetch("/generation_452_ai.ron");
-    const response = await fetch("/generation_452_ai.json", {
+    const response = await fetch("/generation_1040_ai.json", {
       headers: {
         Accept: "text/plain", // Force text format
       },
