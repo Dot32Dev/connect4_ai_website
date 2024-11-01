@@ -194,6 +194,6 @@ function ai_turn() {
     turn_text.classList.remove(turn);
     window.turn = window.turn === "red" ? "blue" : "red";
     turn_text.classList.add(turn);
-    turn_text.innerHTML = `${window.turn[0].toUpperCase() + window.turn.slice(1)}'s`;
+    turn_text.innerHTML = `${window.turn[0].toUpperCase() + window.turn.slice(1)}`;
   }
 }
