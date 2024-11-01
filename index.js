@@ -109,7 +109,12 @@ function initialise_board() {
         game.place(col - 1);
 
         if (!window.won) {
-          ai_turn();
+          window.inactive = true;
+          document.body.classList.add("inactive");
+
+          setTimeout(function () {
+            ai_turn();
+          }, 500);
         }
       }
     });
