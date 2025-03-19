@@ -16,3 +16,5 @@ I built the Rust half of this website and the part of the JavaScript that intera
 Here is a screenshot from my Assignment submission about the failure of the AI to learn
 
 <img width="857" alt="Screenshot 2025-03-19 at 9 37 33 pm" src="https://github.com/user-attachments/assets/c6cbc0c5-61bd-4777-9fab-aef68d22ad5f" />
+
+I guess i'm not majoring in AI for a reason lmao
